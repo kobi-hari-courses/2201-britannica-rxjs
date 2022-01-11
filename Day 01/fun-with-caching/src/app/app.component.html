@@ -1,0 +1,16 @@
+<button (click)="go()">Go!</button>
+<button (click)="add()"> Add </button>
+<button (click)="remove()"> Remove </button>
+
+<hr>
+
+<ng-container *ngFor="let bla of duplicates">
+
+  <div *ngFor="let clr of (colors$ | async)" [style.background]="clr.code">
+    {{clr.id}}
+  </div>
+  
+  <hr>
+  
+</ng-container>
+

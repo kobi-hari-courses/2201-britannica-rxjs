@@ -1,0 +1,11 @@
+{
+    "numbers": [1, 2, 3, 4, 5], 
+    "colors": [
+        {"code": "#FF0000", "id": "red"}, 
+        {"code": "#00FF00", "id": "green"}, 
+        {"code": "#0000FF", "id": "blue"}, 
+        {"code": "#FFFF00", "id": "yellow"}, 
+        {"code": "#00FFFF", "id": "cyan"}, 
+        {"code": "#FF00FF", "id": "magenta"}
+    ]
+}
