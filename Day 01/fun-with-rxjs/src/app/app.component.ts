@@ -7,6 +7,12 @@ import { BehaviorSubject, interval, Observable, Observer, ReplaySubject, Subject
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  isShowingCounterReader = true;
+
+  toggleReader() {
+    this.isShowingCounterReader = !this.isShowingCounterReader;
+  }
+
 
   createObserver(id: number): Observer<number> {
     return {
