@@ -1,0 +1,11 @@
+.history {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+table {
+    border: 1px solid black;
+    padding: 5px;
+    margin: 5px;
+}

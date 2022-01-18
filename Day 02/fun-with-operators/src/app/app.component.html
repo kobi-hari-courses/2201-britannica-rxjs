@@ -1,1 +1,17 @@
-<button (click)="go()">GO</button>
+<div class="history">
+    <div *ngFor="let market of history">
+        <table>
+            <thead>
+                <th>Name</th>
+                <th>Value</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let stock of market.stocks">
+                    <td>{{stock.id}}</td>
+                    <td>{{stock.value}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
