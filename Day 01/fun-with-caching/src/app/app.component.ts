@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable, ReplaySubject, Subject } from 'rxjs';
+import { BehaviorSubject, ConnectableObservable, Observable, ReplaySubject, Subject } from 'rxjs';
 import { ColorModel } from './models/color.model';
 import { DataService } from './service/data.service';
+import { multicast } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -34,10 +35,13 @@ export class AppComponent implements OnInit {
     console.log('Fetching all colors');
     const cold$ = this.dataService.getAllColors();
 
-    const hot$ = new ReplaySubject<ColorModel[]>(1);
-    this.colors$ = hot$;
-    cold$.subscribe(hot$);
+    // const hot$ = new ReplaySubject<ColorModel[]>(1);
+    // this.colors$ = hot$;
+    // cold$.subscribe(hot$);
 
+    const hot$ = cold$.pipe(multicast(new ReplaySubject<ColorModel[]>(1))) as ConnectableObservable<ColorModel[]>;
+    this.colors$ = hot$;
+    hot$.connect();
 
   }
 
