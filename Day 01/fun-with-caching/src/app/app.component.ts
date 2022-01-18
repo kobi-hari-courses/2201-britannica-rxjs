@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, ConnectableObservable, Observable, ReplaySubject, Subject } from 'rxjs';
+import { BehaviorSubject, ConnectableObservable, interval, Observable, ReplaySubject, Subject } from 'rxjs';
 import { ColorModel } from './models/color.model';
 import { DataService } from './service/data.service';
-import { multicast } from 'rxjs/operators';
+import { multicast, publishReplay, refCount } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
 
   duplicates = ['X', 'X'];
 
-  colors$: Observable<ColorModel[]> | null = null;
+  colors$: Observable<number> | null = null;
 
   add() {
     this.duplicates.push('X');
@@ -33,15 +33,18 @@ export class AppComponent implements OnInit {
     if (this.colors$ !== null) return;
 
     console.log('Fetching all colors');
-    const cold$ = this.dataService.getAllColors();
+    // const cold$ = this.dataService.getAllColors();
+    const cold$ = interval(500);
 
     // const hot$ = new ReplaySubject<ColorModel[]>(1);
     // this.colors$ = hot$;
     // cold$.subscribe(hot$);
 
-    const hot$ = cold$.pipe(multicast(new ReplaySubject<ColorModel[]>(1))) as ConnectableObservable<ColorModel[]>;
+    // const hot$ = cold$.pipe(multicast(new ReplaySubject<ColorModel[]>(1))) as ConnectableObservable<ColorModel[]>;
+    
+    const hot$ = cold$.pipe(publishReplay(1), refCount());
     this.colors$ = hot$;
-    hot$.connect();
+    // hot$.connect();
 
   }
 
