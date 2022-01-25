@@ -11,18 +11,44 @@ html, body {
 
 body {
     display: grid;
+    position: relative;
 }
 
 div.parent {
+    position: absolute;
+    width: 100%;
+    height: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+    flex-shrink: 0;
 }
 
 div.child {
     display: flex;
     border: 1px solid black;
-    margin: 10px;
+    background: rgb(243, 243, 243);
+    overflow: hidden;
+    padding: 20px;
+    flex-grow: 1;
+    flex-basis: 50px;
 }
 
-div.child:nth-child(3) {
+div.child:nth-child(5) {
+    background: yellow;
+    order: -1;
 }
+
+div.child:nth-child(7) {
+    background: yellow;
+    order: -1;
+}
+
+div.child:nth-child(2), div.child:nth-child(4) {
+    background: lime;
+    order: 1;
+}
+
