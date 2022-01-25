@@ -1,0 +1,28 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    display: grid;
+}
+
+div.parent {
+    display: flex;
+    flex-direction: column;
+}
+
+div.child {
+    display: flex;
+    border: 1px solid black;
+    margin: 10px;
+}
+
+div.child:nth-child(3) {
+}
